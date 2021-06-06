@@ -1,0 +1,6 @@
+{
+    "env": {
+        "baseUrl": "https://cc.healthrecoverysolutions.com/login"
+    },
+    "testFiles": "**/*.spec.js"
+}
