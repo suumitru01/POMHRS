@@ -1,12 +1,53 @@
 /// <reference types="cypress" />
 class LoginPage {
+
+    getAPI1() {
+        return cy.intercept({
+            method: 'GET',
+            url: 'https://ekr.zdassets.com/compose/web_widget/healthrecoverysolutions.zendesk.com'
+        },
+            {
+                statusCode: 200,
+                headers: { 'content-type': 'application/json; charset=utf-8' }
+            }).as('retrieve1')
+    }
+    getAPI2() {
+        return cy.intercept({
+            method: 'POST',
+            url: 'https://gateway.healthrecoverysolutions.com/v1/tokens'
+        },
+            {
+                statusCode: 422,
+                headers: { 'content-type': 'application/json' }
+            }).as('retrieve2')
+    }
+    getAPI3() {
+        return cy.intercept({
+            method: 'POST',
+            url: 'https://gateway.healthrecoverysolutions.com/v1/password-reset-tokens'
+        },
+            {
+                statusCode: 422,
+                headers: { 'content-type': 'application/json' }
+            }).as('retrieve3')
+    }
+    getAPI4() {
+        return cy.intercept({
+            method: 'POST',
+            url: 'https://gateway.healthrecoverysolutions.com/v1/password-reset-tokens'
+        },
+            {
+                statusCode: 204,
+                headers: { 'content-type': 'application/json' }
+            }).as('retrieve4')
+    }
     visit() {
-        cy.visit(Cypress.env('baseUrl'))
+        cy.visit(Cypress.env('baseUrl'),{timeout:10000})
     }
 
     fillEmail() {
         return cy.get("#loginEmail")
-        
+
     }
 
     resetPwdUsername() {
@@ -42,21 +83,19 @@ class LoginPage {
     }
 
     closeMsg() {
-        return cy.get('.cg-notify-close > [aria-hidden="true"]')
+        return cy.get('[aria-hidden="true"]')
     }
 
     notifyClose() {
         return cy.get('.cg-notify-close')
     }
 
-    blankNotify()
-        {
-            return cy.contains("Please fill out this field.").should('have.text', 'Please fill out this field.')
-        }
+    blankNotify() {
+        return cy.contains("Please fill out this field.").should('have.text', 'Please fill out this field.')
+    }
 
-    notify()
-        {
-            return cy.get('.cg-notify-message')
-        }
+    notify() {
+        return cy.get('.cg-notify-message')
+    }
 }
 export default LoginPage
