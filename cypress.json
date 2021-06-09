@@ -2,5 +2,9 @@
     "env": {
         "baseUrl": "https://cc.healthrecoverysolutions.com/login"
     },
-    "testFiles": "**/*.spec.js"
+    "testFiles": "**/*.spec.js",
+    "retries": {
+        "runMode": 1,
+        "openMode": 1
+    }
 }
