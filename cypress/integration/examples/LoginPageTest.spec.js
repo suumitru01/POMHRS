@@ -6,7 +6,7 @@ const lp = new LoginPage()
 describe("Test Suite", function () {
 
     it("User should be able to launch an url", function () {
-
+        //Newly added to the project
         lp.getAPI1()
         lp.visit()
         cy.wait('@retrieve1')
